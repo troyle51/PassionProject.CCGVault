@@ -6,18 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
-@Controller
+@RestController
 public class DigimonCardController {
     //Keep layer thin as possible. Limit this class to receiving, validating inputs, manipulating object models and returning
     // the moved and View object. All business-related operations should be done in service class.
@@ -74,6 +72,46 @@ public class DigimonCardController {
         }
         in.close();
         return content.toString();
+    }
+
+
+    // RESTful API methods for Retrieval operations
+    @GetMapping("/product")
+    public List<DigimonCard> list() {
+        return service.listAll();
+    }
+
+    @GetMapping("/products/{id}")
+    public ResponseEntity<DigimonCard> get(@PathVariable Integer id) {
+        try {
+            DigimonCard product = service.get(id);
+            return new ResponseEntity<DigimonCard>(product, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<DigimonCard>(HttpStatus.NOT_FOUND);
+        }
+    }
+    // RESTful API method for Create operation
+    @PostMapping("/products")
+    public void add(@RequestBody DigimonCard product) {
+        service.save(product);
+    }
+
+    // RESTful API method for Update operation
+    @PutMapping("/products/{id}")
+    public ResponseEntity<?> update(@RequestBody DigimonCard product, @PathVariable Integer id) {
+        try {
+            DigimonCard existProduct = service.get(id);
+            service.save(product);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // RESTful API method for Delete operation
+    @DeleteMapping("/products/{id}")
+    public void delete(@PathVariable Integer id) {
+        service.delete(id);
     }
 
 }

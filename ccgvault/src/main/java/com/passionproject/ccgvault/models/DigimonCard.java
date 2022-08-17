@@ -1,6 +1,8 @@
 package com.passionproject.ccgvault.models;
 
+
 import javax.persistence.*;
+
 
 @Entity
 @Table(name="digimon")
@@ -27,6 +29,9 @@ public class DigimonCard {
     private String setName;
 //    private List<String> cardSets = null;
     private String imageUrl;
+
+    public DigimonCard() {
+    }
 
     public DigimonCard(Long id) {
         this.id = id;
