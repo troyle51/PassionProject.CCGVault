@@ -1,5 +1,6 @@
 package com.passionproject.ccgvault.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.passionproject.ccgvault.models.DigimonCard;
 import com.passionproject.ccgvault.services.DigimonCardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 public class DigimonCardController {
@@ -20,7 +22,7 @@ public class DigimonCardController {
 
     // RESTful API methods for Retrieval operations
     @GetMapping(value = "/all")
-    private Object[] getApiCall() {
+    private List<DigimonCard> getApiCall() throws JsonProcessingException {
         return service.listAll();
     }
     @GetMapping(value = "card")
