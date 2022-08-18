@@ -11,23 +11,39 @@ public class DigimonCard {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
     private Long id;
+    @Column(name="name")
     private String name;
+    @Column(name="type")
     private String type;
+    @Column(name="color")
     private String color;
+    @Column(name="stage")
     private String stage;
+    @Column(name="digiType")
     private String digiType;
+    @Column(name="attribute")
     private String attribute;
+    @Column(name="level")
     private Integer level;
+    @Column(name="playCost")
     private Integer playCost;
+    @Column(name="evolutionCost")
     private Integer evolutionCost;
+    @Column(name="cardrarity")
     private String cardrarity;
+    @Column(name="artist")
     private String artist;
+    @Column(name="dp")
     private Integer dp;
+    @Column(name="cardnumber")
     private String cardnumber;
+    @Column(name="maineffect")
     private String maineffect;
 //    private Object soureeffect;
+    @Column(name="setName")
     private String setName;
 //    private List<String> cardSets = null;
+    @Column(name="imageUrl")
     private String imageUrl;
 
     public DigimonCard() {
