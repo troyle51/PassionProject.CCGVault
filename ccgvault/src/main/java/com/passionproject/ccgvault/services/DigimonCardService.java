@@ -31,6 +31,7 @@ public class DigimonCardService {
     //use threads to set 20 secs for requests and populate full data base of cards
     //run list all and run get card by name inside a loop with threads
     //Get save method working first.
+    //1609 total cards. 108 cards added per 20 seconds
     public List<DigimonCard> listAll() throws JsonProcessingException {
         String url = "https://digimoncard.io/api-public/getAllCards.php?sort=name&series=Digimon Card Game&sortdirection=asc";
         HttpEntity<String> entity = new HttpEntity<>(new HttpHeaders());
