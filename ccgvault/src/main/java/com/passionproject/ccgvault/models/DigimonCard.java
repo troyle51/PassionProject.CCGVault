@@ -1,15 +1,21 @@
 package com.passionproject.ccgvault.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 
 @Entity
 @Table(name="digimon")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DigimonCard {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
+    @JsonProperty("id")
     private Long id;
     @Column(name="name")
     private String name;
@@ -37,7 +43,7 @@ public class DigimonCard {
     private Integer dp;
     @Column(name="cardnumber")
     private String cardnumber;
-    @Column(name="maineffect")
+    @Column(name="maineffect", length = (10000))
     private String maineffect;
 //    private Object soureeffect;
     @Column(name="setName")
@@ -45,6 +51,7 @@ public class DigimonCard {
 //    private List<String> cardSets = null;
     @Column(name="imageUrl")
     private String imageUrl;
+
 
     public DigimonCard() {
     }

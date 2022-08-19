@@ -4,8 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.passionproject.ccgvault.models.DigimonCard;
 import com.passionproject.ccgvault.services.DigimonCardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -26,11 +24,11 @@ public class DigimonCardController {
         return service.listAll();
     }
     @GetMapping(value = "card")
-    public @ResponseBody String getCardByName(@RequestParam String name) throws IOException {
+    public @ResponseBody List<DigimonCard>  getCardByName(@RequestParam String name) throws IOException {
         return service.getByName(name);
     }
     @GetMapping(value = "cardNum")
-    public @ResponseBody String getCardByNumber(@RequestParam String card) throws IOException {
+    public @ResponseBody List<DigimonCard> getCardByNumber(@RequestParam String card) throws IOException {
         return service.getByCardNumber(card);
     }
 
@@ -46,10 +44,10 @@ public class DigimonCardController {
 //        }
 //    }
     // RESTful API method for Create operation
-    @PostMapping("/products")
-    public void add(@RequestBody DigimonCard product) {
-        service.save(product);
-    }
+//    @PostMapping("/products")
+//    public void add(@RequestBody DigimonCard product) {
+//        service.save(product);
+//    }
 
     // RESTful API method for Update operation
 //    @PutMapping("/products/{id}")

@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.InputStream;
 import java.util.List;
 
 @Service
@@ -39,20 +40,62 @@ public class DigimonCardService {
         String jsonDigimon = response.getBody();
         ObjectMapper objectMapper = new ObjectMapper();
         List<DigimonCard> listDigimon = objectMapper.readValue(jsonDigimon, new TypeReference<List<DigimonCard>>(){});
+        saveAll(listDigimon);
         //return template.getForObject(url, Object[].class);
-        System.out.println(listDigimon.size());
+        //System.out.println(listDigimon.size());
         return listDigimon;
     }
 
+//    public DigimonCard getByCardNumber(String card) throws JsonProcessingException {
+//        String url = ("https://digimoncard.io/api-public/search.php?card=" + card);
+//        HttpEntity<String> entity = new HttpEntity<>(new HttpHeaders());
+//        ResponseEntity<String> response = template.exchange(url, HttpMethod.GET, entity, String.class);
+//        String jsonDigimon = response.getBody();
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        DigimonCard digimon = objectMapper.readValue(jsonDigimon, new TypeReference<DigimonCard>() {});
+//        save(digimon);
+//        //return template.getForObject(url, Object[].class);
+//        //System.out.println(listDigimon.size());
+//        return digimon;
+//
+//
+//        //return template.getForObject(("https://digimoncard.io/api-public/search.php?card=" + card), String.class);
+//    }
+
+    public void saveAll(Iterable<DigimonCard> card) {
+        repository.saveAll(card);
+    }
     public void save(DigimonCard card) {
         repository.save(card);
     }
 
-    public String getByName(String name) {
-        return template.getForObject(("https://digimoncard.io/api-public/search.php?n=" + name), String.class);
+    public List<DigimonCard> getByName(String name) throws JsonProcessingException {
+        String url = ("https://digimoncard.io/api-public/search.php?n=" + name);
+        HttpEntity<String> entity = new HttpEntity<>(new HttpHeaders());
+        ResponseEntity<String> response = template.exchange(url, HttpMethod.GET, entity, String.class);
+        String jsonDigimon = response.getBody();
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<DigimonCard> digimon = objectMapper.readValue(jsonDigimon, new TypeReference<List<DigimonCard>>(){});
+        saveAll(digimon);
+        //return template.getForObject(url, Object[].class);
+        //System.out.println(listDigimon.size());
+        return digimon;
+
+        //return template.getForObject(("https://digimoncard.io/api-public/search.php?n=" + name), String.class);
     }
-    public String getByCardNumber(String card) {
-        return template.getForObject(("https://digimoncard.io/api-public/search.php?card=" + card), String.class);
+    public List<DigimonCard> getByCardNumber(String card) throws JsonProcessingException {
+        String url = ("https://digimoncard.io/api-public/search.php?card=" + card);
+        HttpEntity<String> entity = new HttpEntity<>(new HttpHeaders());
+        ResponseEntity<String> response = template.exchange(url, HttpMethod.GET, entity, String.class);
+        String jsonDigimon = response.getBody();
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<DigimonCard> digimon = objectMapper.readValue(jsonDigimon, new TypeReference<List<DigimonCard>>(){});
+        saveAll(digimon);
+        //return template.getForObject(url, Object[].class);
+        //System.out.println(listDigimon.size());
+        return digimon;
+
+        //return template.getForObject(("https://digimoncard.io/api-public/search.php?card=" + card), String.class);
     }
 
     public void delete(Integer id) {
