@@ -29,12 +29,9 @@ public class DigimonCardService {
     }
 
     //Requests are rate limited and are rate limited to 15 requests per 10 seconds otherwise you will be blocked from accessing for an hour.
-    //use threads to set 20 secs for requests and populate full data base of cards
-    //run list all and run get card by name inside a loop with threads
-    //Get save method working first.
-    //1609 total cards. 108 cards added per 20 seconds
+
     public List<DigimonCard> listAll() throws JsonProcessingException {
-        String url = "https://digimoncard.io/api-public/getAllCards.php?sort=name&series=Digimon Card Game&sortdirection=asc";
+        String url = "https://digimoncard.io/api-public/search.php?n=";
         HttpEntity<String> entity = new HttpEntity<>(new HttpHeaders());
         ResponseEntity<String> response = template.exchange(url, HttpMethod.GET, entity, String.class);
         String jsonDigimon = response.getBody();
