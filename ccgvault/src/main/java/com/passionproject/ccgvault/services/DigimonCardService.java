@@ -43,21 +43,6 @@ public class DigimonCardService {
         return listDigimon;
     }
 
-//    public DigimonCard getByCardNumber(String card) throws JsonProcessingException {
-//        String url = ("https://digimoncard.io/api-public/search.php?card=" + card);
-//        HttpEntity<String> entity = new HttpEntity<>(new HttpHeaders());
-//        ResponseEntity<String> response = template.exchange(url, HttpMethod.GET, entity, String.class);
-//        String jsonDigimon = response.getBody();
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        DigimonCard digimon = objectMapper.readValue(jsonDigimon, new TypeReference<DigimonCard>() {});
-//        save(digimon);
-//        //return template.getForObject(url, Object[].class);
-//        //System.out.println(listDigimon.size());
-//        return digimon;
-//
-//
-//        //return template.getForObject(("https://digimoncard.io/api-public/search.php?card=" + card), String.class);
-//    }
 
     public void saveAll(Iterable<DigimonCard> card) {
         repository.saveAll(card);
