@@ -18,7 +18,6 @@ import java.util.List;
 
 @Service
 public class DigimonCardService {
-    //This is where Calc, data transformation, data processes, and cross-record validation (business rules) are done
     @Autowired
     private DigimonCardRepository repository;
     private RestTemplate template = new RestTemplate();
@@ -28,8 +27,6 @@ public class DigimonCardService {
 
     }
 
-    //Requests are rate limited and are rate limited to 15 requests per 10 seconds otherwise you will be blocked from accessing for an hour.
-
     public List<DigimonCard> listAll() throws JsonProcessingException {
         String url = "https://digimoncard.io/api-public/search.php?n=";
         HttpEntity<String> entity = new HttpEntity<>(new HttpHeaders());
@@ -38,8 +35,7 @@ public class DigimonCardService {
         ObjectMapper objectMapper = new ObjectMapper();
         List<DigimonCard> listDigimon = objectMapper.readValue(jsonDigimon, new TypeReference<List<DigimonCard>>(){});
         saveAll(listDigimon);
-        //return template.getForObject(url, Object[].class);
-        //System.out.println(listDigimon.size());
+
         return listDigimon;
     }
 
@@ -59,11 +55,8 @@ public class DigimonCardService {
         ObjectMapper objectMapper = new ObjectMapper();
         List<DigimonCard> digimon = objectMapper.readValue(jsonDigimon, new TypeReference<List<DigimonCard>>(){});
         saveAll(digimon);
-        //return template.getForObject(url, Object[].class);
-        //System.out.println(listDigimon.size());
-        return digimon;
 
-        //return template.getForObject(("https://digimoncard.io/api-public/search.php?n=" + name), String.class);
+        return digimon;
     }
     public List<DigimonCard> getByCardNumber(String card) throws JsonProcessingException {
         String url = ("https://digimoncard.io/api-public/search.php?card=" + card);
@@ -73,11 +66,7 @@ public class DigimonCardService {
         ObjectMapper objectMapper = new ObjectMapper();
         List<DigimonCard> digimon = objectMapper.readValue(jsonDigimon, new TypeReference<List<DigimonCard>>(){});
         saveAll(digimon);
-        //return template.getForObject(url, Object[].class);
-        //System.out.println(listDigimon.size());
         return digimon;
-
-        //return template.getForObject(("https://digimoncard.io/api-public/search.php?card=" + card), String.class);
     }
 
     public void delete(Integer id) {

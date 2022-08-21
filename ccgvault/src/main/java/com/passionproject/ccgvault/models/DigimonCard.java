@@ -25,15 +25,15 @@ public class DigimonCard {
     private String color;
     @Column(name="stage")
     private String stage;
-    @Column(name="digiType")
+    @Column(name="digi_Type")
     private String digiType;
     @Column(name="attribute")
     private String attribute;
     @Column(name="level")
     private Integer level;
-    @Column(name="playCost")
+    @Column(name="play_Cost")
     private Integer playCost;
-    @Column(name="evolutionCost")
+    @Column(name="evolution_Cost")
     private Integer evolutionCost;
     @Column(name="cardrarity")
     private String cardrarity;
@@ -45,13 +45,10 @@ public class DigimonCard {
     private String cardnumber;
     @Column(name="maineffect", length = (10000))
     private String maineffect;
-//    private Object soureeffect;
-    @Column(name="setName")
+    @Column(name="set_Name")
     private String setName;
-//    private List<String> cardSets = null;
-    @Column(name="imageUrl")
+    @Column(name="image_Url", length = (10000))
     private String imageUrl;
-
 
     public DigimonCard() {
     }
@@ -59,8 +56,6 @@ public class DigimonCard {
     public DigimonCard(Long id) {
         this.id = id;
     }
-//    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
 
     public Long getId() {
         return id;
@@ -182,13 +177,6 @@ public class DigimonCard {
         this.maineffect = maineffect;
     }
 
-//    public Object getSoureeffect() {
-//        return soureeffect;
-//    }
-//
-//    public void setSoureeffect(Object soureeffect) {
-//        this.soureeffect = soureeffect;
-//    }
 
     public String getSetName() {
         return setName;
@@ -198,13 +186,6 @@ public class DigimonCard {
         this.setName = setName;
     }
 
-//    public List<String> getCardSets() {
-//        return cardSets;
-//    }
-//
-//    public void setCardSets(List<String> cardSets) {
-//        this.cardSets = cardSets;
-//    }
 
     public String getImageUrl() {
         return imageUrl;
@@ -214,12 +195,6 @@ public class DigimonCard {
         this.imageUrl = imageUrl;
     }
 
-//    public Map<String, Object> getAdditionalProperties() {
-//        return this.additionalProperties;
-//    }
-//
-//    public void setAdditionalProperty(String name, Object value) {
-//        this.additionalProperties.put(name, value);
-//    }
+
 
 }

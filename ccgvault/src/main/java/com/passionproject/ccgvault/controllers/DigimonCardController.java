@@ -12,13 +12,11 @@ import java.util.List;
 
 @RestController
 public class DigimonCardController {
-    //Keep layer thin as possible. Limit this class to receiving, validating inputs, manipulating object models and returning
-    // the moved and View object. All business-related operations should be done in service class.
     @Autowired
     private DigimonCardService service;
     private RestTemplate template = new RestTemplate();
 
-    // RESTful API methods for Retrieval operations
+
     @GetMapping(value = "/all")
     private List<DigimonCard> getApiCall() throws JsonProcessingException {
         return service.listAll();
@@ -60,11 +58,10 @@ public class DigimonCardController {
 //            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 //        }
 //    }
-
-    // RESTful API method for Delete operation
-    @DeleteMapping("/products/{id}")
-    public void delete(@PathVariable Integer id) {
-        service.delete(id);
-    }
+//
+//    @DeleteMapping("/products/{id}")
+//    public void delete(@PathVariable Integer id) {
+//        service.delete(id);
+//    }
 
 }
