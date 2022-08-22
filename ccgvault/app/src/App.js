@@ -8,19 +8,19 @@ import { Route, Routes } from 'react-router-dom';
 import { Component } from 'react';
 
 
+
 class App extends Component {
+
     render() {
       return (
       <div className="App">
         <Navbar />
-        
-        {/* <Database /> */}
           <div className="container1">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/database" element={<Database />} />
-              <Route path="/about" element={<About />} />
+              <Route path="/collection" element={<About />} />
             </Routes>
           </div>
       </div>

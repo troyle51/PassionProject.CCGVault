@@ -3,7 +3,9 @@ import '../App.css';
 import SearchIcon from '../search.svg';
 import DigiCard from '../DigiCard';
 
-const API_URL = 'https://digimoncard.io/api-public/search.php?'
+// const API_URL = 'https://digimoncard.io/api-public/search.php?'
+const API_URL = 'http://localhost:8080/card/name';
+
 
 function Database() {
 
@@ -12,7 +14,8 @@ function Database() {
     const [searchTerm, setSearchTerm] = useState('');
 
     const searchCards = async (name) => {
-        const response = await fetch(`${API_URL}n=${name}`);
+        const response = await fetch(`${API_URL}?name=${name}`);
+        //const response = await fetch(`${API_URL}?n=${name}`);
         const data = await response.json();
 
         
